@@ -16,3 +16,13 @@ jobs:
         with:
           node-version: 20
       - run: echo "Instalou o node"
+
+  stress_test:
+    runs-on: self-hosted
+    steps:
+      - name: Instalar stress-ng
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y stress-ng
+      - name: Executar teste de estresse
+        run: stress-ng --cpu 2 --timeout 60s
