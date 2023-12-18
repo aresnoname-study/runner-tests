@@ -6,23 +6,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: qatest
     steps:
       - name: Repository checkout
         uses: actions/checkout@v3
 
-      - name: Install node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: echo "Instalou o node"
-
-  stress_test:
-    runs-on: self-hosted
-    steps:
-      - name: Instalar stress-ng
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y stress-ng
-      - name: Executar teste de estresse
-        run: stress-ng --cpu 2 --timeout 60s
+      - name: Gerar carga de trabalho pesada
+        run: dd if=/dev/zero of=/dev/null bs=1M count=20
