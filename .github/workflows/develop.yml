@@ -1,0 +1,19 @@
+name: Development environment
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: echo "Instalou o node"
+```
